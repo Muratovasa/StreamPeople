@@ -32,10 +32,9 @@ public class Main {
         //фамилии
         List<String> work = persons.stream()
                 .filter(education -> education.getEducation() == Education.HIGHER)
-                .filter(sex -> sex.getSex() == Sex.WOMAN)
-                .filter(woman -> woman.getAge() > 18 && woman.getAge() < 57)
-                .filter(sex -> sex.getSex() == Sex.MAN)
-                .filter(man -> man.getAge() > 18 && man.getAge() < 65)
+                .filter(p->p.getAge()>=18)
+                .filter(p->(p.getSex()==Sex.WOMAN&&p.getAge()<55)||
+                        (p.getSex()==Sex.MAN&&p.getAge()<60))
                 .map(Person::getFamily)
                 .sorted(Comparator.naturalOrder())
                 .collect(Collectors.toList());
